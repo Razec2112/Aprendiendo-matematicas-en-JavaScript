@@ -34,6 +34,23 @@ function calculoPerimetroTriangulo(lado1, lado2, base, altura){
     }
 }
 
+function calcularTrianguloIsoseles(lado, base){
+    if (lado == base) {
+        console.warn("este triangulo no es isoseles")
+    } else {
+        return Math.sqrt((Math.pow(lado, 2)) - ((Math.pow(base, 2))/4))
+    }
+}
+
+function calcularTriaguloEscaleno (lado1, lado2, base) {
+    if (lado1 != lado2 && lado1 != base && lado2 != base) {
+        const s = (lado1 + lado2 + base) / 2
+        return ((2/base) * Math.sqrt(s*(s-base)*(s-lado1)*(s-lado2)))
+    } else {
+        console.warn("este no es un triangulo escaleno")
+    }
+}
+
 console.log({
     ladoTriangulo1,
     ladoTriangulo2,
