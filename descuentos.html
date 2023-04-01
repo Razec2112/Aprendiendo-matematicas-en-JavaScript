@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Su web de calculo de descuentos</title>
+    <link rel="stylesheet" href="./descuentosStyles.css">
+</head>
+<body>
+    <header>
+        <h1>Calcula los descuentos para tu compra asi sabes cuanto dinero ahorras</h1>
+    </header>
+    <main>
+        <div class="solicitud">
+            <p>¿cuantos articulos va a adquirir? (max 10)</p>
+            <input type="number" class="solicitud-input">
+            <button class="solicitudButton">OK</button>
+            </div>
+        <div class="productosDescuentos disabled">
+            <div class="precioProductos">
+                <p>coloca los precios de los productos</p>
+            </div>
+            <div class="descuentos">
+                <p>coloca los descuentos correspondientes a cada producto</p>
+            </div>
+            <div class="precioConDescuento disabled">
+                <p>esto es lo que pagaras por cada producto</p>
+            </div>
+            <div class="dineroAhorrado disabled">
+                <p>esto es lo que te ahorras con cada producto</p>
+            </div>
+        </div>
+        <button class="botonCalcular disabled">Calcular</button>
+        <button type="reset" class="botonReset disabled">Reset</button>
+        <div class="resultados">
+            <div class="totalPagar"></div>
+            <div class="totalAhorrado"></div>
+        </div>
+    </main>
+    <script src="./descuentos.js"></script>
+</body>
+</html>
