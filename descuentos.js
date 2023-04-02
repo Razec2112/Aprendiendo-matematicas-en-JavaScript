@@ -74,9 +74,30 @@ const conjuntoDeDescuentos = document.getElementsByClassName("descuento")
         ahorroIndividual.innerText=(conjuntoDeProductos[i].value-((conjuntoDeProductos[i].value*(100-conjuntoDeDescuentos[i].value))/100))
         descuentoIndividual.appendChild(ahorroIndividual)
     }
+    
     sumaTotal()
 }
 
 function sumaTotal() {
-    const conjuntoDePagos = do
+    const arrayPagos = document.getElementsByClassName("aPagar")
+    const arrayDescuentos = document.getElementsByClassName ("descuento")
+    const totalPagos = document.querySelector(".totalPagar")
+    const totalDescuentos = document.querySelector(".totalAhorrado")
+    const contenedorResultados = document.querySelector(".resultados")
+
+    contenedorResultados.classList.remove("disabled")
+    let sumaDePagos = 0
+    let sumaDeDescuentos = 0
+
+
+    for (let i = 0; i < arrayPagos.length; i++) {
+        sumaDePagos = Number(sumaDePagos)+ Number(arrayPagos[i].innerText)
+    }
+
+    for (let i = 0; i < arrayDescuentos.length; i++) {
+        sumaDeDescuentos = Number(sumaDeDescuentos)+Number(arrayDescuentos[i].innerText)
+    }
+
+    totalPagos.innerText = sumaDePagos
+    totalDescuentos.innerText = sumaDeDescuentos
 }
