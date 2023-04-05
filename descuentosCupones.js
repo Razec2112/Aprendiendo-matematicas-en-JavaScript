@@ -1,109 +1,77 @@
-const cantidadArticulos = document.querySelector(".solicitud-input")
-const cantidadSubmit = document.querySelector(".solicitudButton")
-const subtitulo = document.querySelector(".solicitud label")
-const precioProductos = document.querySelector(".precioProductos")
-const contenedorCalculos = document.querySelector(".productosDescuentos")
-const descuentosIndividuales = document.querySelector (".descuentos")
-const precioConDescuento = document.querySelector (".precioConDescuento")
-const descuentoIndividual = document.querySelector (".dineroAhorrado")
-const botonReset = document.querySelector (".botonReset")
-const botonCalcular = document.querySelector (".botonCalcular")
+const inputPrice = document.querySelector('#price');
+const inputCoupon = document.querySelector('#coupon');
+const btn = document.querySelector('#calcular');
+const pResult = document.querySelector('#result');
 
-botonCalcular.addEventListener("click", realizarCalculos)
-botonReset.addEventListener("click", reset)
+btn.addEventListener('click', calcularPrecioConDescuento);
 
-function iniciarCalculo (){
-    cantidadArticulos.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {
-            mostrarTodo()
-        }
-    })
-    cantidadSubmit.addEventListener("click", mostrarTodo)
-}
+// const arrayUObjecto = undefined; // ['cupones': descuento] {}?
 
-function mostrarTodo () {
-    if (cantidadArticulos.value > 0 && cantidadArticulos.value <= 10) {
-        cantidadArticulos.classList.add("disabled")
-        cantidadSubmit.classList.add("disabled")
-        subtitulo.classList.add("disabled")
+// const couponsObj = {
+//     "you_know_why?": 30,
+//     "3456789": 25,
+//     "123": 15,
+// }
 
-        for (let i = 0; i < cantidadArticulos.value; i++) {
-            contenedorCalculos.classList.remove("disabled")
-            botonReset.classList.remove("disabled")
-            botonCalcular.classList.remove("disabled")
-            
+const couponList = [];
+couponList.push({
+    name: "you_know_why?",
+    discount: 30,
+})
 
-            const product = document.createElement(`input`)
-            product.classList.add (`product`)
-            precioProductos.appendChild(product)
-            product.setAttribute("type", "number")
+function calcularPrecioConDescuento() {
+  const price = Number(inputPrice.value);
+  const coupon = inputCoupon.value;
 
-            const descuento = document.createElement(`input`)
-            descuento.classList.add (`descuento`)
-            descuentosIndividuales.appendChild(descuento)
-            product.setAttribute("type", "number")
-        }
+  if (!price || !coupon) {
+    pResult.innerText = 'CHANCLA por favor llena el formulario';
+    return;
+  }
+  
+  let discount;
 
-    } else {
-        alert("cantidad no admitida")
-    }
-}
+  function isTheCoupon (couponElement) {
+    return couponElement.name == coupon
+  }
 
-iniciarCalculo()
+  const couponUser = couponList.find(isTheCoupon)
 
-function realizarCalculos () {
-const conjuntoDeProductos = document.getElementsByClassName("product")
-const conjuntoDeDescuentos = document.getElementsByClassName("descuento")
+  if (couponUser) {
+    discount = couponUser.discount
+  } else {
+    pResult.innerText = 'El cupón no es válido';
+    return;
+  }
 
-    for (let i = 0; i < conjuntoDeProductos.length; i++) {
-        const aPagarIndividual = document.createElement("p")
-        aPagarIndividual.classList.add (`aPagar`)
-        aPagarIndividual.innerText= (conjuntoDeProductos[i].value*(100-conjuntoDeDescuentos[i].value))/100
-        precioConDescuento.appendChild(aPagarIndividual)
-    
-        const ahorroIndividual = document.createElement("p")
-        ahorroIndividual.classList.add (`descuento`)
-        ahorroIndividual.innerText=(conjuntoDeProductos[i].value-((conjuntoDeProductos[i].value*(100-conjuntoDeDescuentos[i].value))/100))
-        descuentoIndividual.appendChild(ahorroIndividual)
+//   if (couponsObj[coupon]) { //este if verifica si alguna de las propiedades del objeto "conjuntoObj" coincide con lo que el usuario halla colocado en el input del cupon
+//     discount = couponsObj[coupon]
+//   }else{
+//     pResult.innerText = 'El cupón no es válido';
+//     return;
+//   }
 
-        if (!conjuntoDeProductos[i].value || !conjuntoDeDescuentos[i].value) {
-            alert("por favor llena todas las casillas")
-            return false
-        } else if (conjuntoDeDescuentos[i].value > 100) {
-            alert("el valor de el descuento debe ser un numero entre 0 y 100")
-            return false
-        }
-    }
-    precioConDescuento.classList.remove("disabled")
-    descuentoIndividual.classList.remove("disabled")
-    botonCalcular.classList.add("disabled")
-    sumaTotal()
-}
+//   switch (coupon) {
+//     case 'JuanDC_es_Batman':
+//       discount = 30;
+//       break;
+//     case 'no_le_digas_a_nadie':
+//       discount = 25;
+//       break;
+//     default:
+    //   pResult.innerText = 'El cupón no es válido';
+    //   return;
+//   }
+  
+  // if (coupon == 'JuanDC_es_Batman') {
+  //   discount = 30;
+  // } else if (coupon == 'no_le_digas_a_nadie') {
+  //   discount = 25;
+  // } else {
+  // pResult.innerText = 'El cupón no es válido';
+  // return;
+  // }
+  
+  const newPrice = (price * (100 - discount)) / 100;
 
-function sumaTotal() {
-    const arrayPagos = document.getElementsByClassName("aPagar")
-    const arrayDescuentos = document.getElementsByClassName ("descuento")
-    const totalPagos = document.querySelector(".totalPagar")
-    const totalDescuentos = document.querySelector(".totalAhorrado")
-    const contenedorResultados = document.querySelector(".resultados")
-
-    contenedorResultados.classList.remove("disabled")
-    let sumaDePagos = 0
-    let sumaDeDescuentos = 0
-
-
-    for (let i = 0; i < arrayPagos.length; i++) {
-        sumaDePagos = Number(sumaDePagos)+ Number(arrayPagos[i].innerText)
-    }
-
-    for (let i = 0; i < arrayDescuentos.length; i++) {
-        sumaDeDescuentos = Number(sumaDeDescuentos)+Number(arrayDescuentos[i].innerText)
-    }
-
-    totalPagos.innerText = sumaDePagos
-    totalDescuentos.innerText = sumaDeDescuentos
-}
-
-function reset() {
-    location.reload()
+  pResult.innerText = 'El nuevo precio con descuento es $' + newPrice;
 }

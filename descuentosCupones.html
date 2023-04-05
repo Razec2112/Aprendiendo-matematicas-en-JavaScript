@@ -1,45 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Su web de calculo de descuentos</title>
-    <link rel="stylesheet" href="./descuentosStyles.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo calcular precios con descuentos</title>
 </head>
 <body>
-    <header>
-        <h1>Calcula los descuentos para tu compra asi sabes cuanto dinero ahorras</h1>
-    </header>
-    <main>
-        <div class="solicitud">
-            <label for="input1">¿cuantos articulos va a adquirir? (max 10)</label>
-            <input id="input1" type="number" class="solicitud-input">
-            <button class="solicitudButton">OK</button>
-            </div>
-        <div class="productosDescuentos disabled">
-            <div class="precioProductos">
-                <p>coloca los precios de los productos</p>
-            </div>
-            <div class="descuentos">
-                <p>coloca los descuentos correspondientes a cada producto</p>
-            </div>
-            <div class="precioConDescuento disabled">
-                <p>esto es lo que pagaras por cada producto</p>
-            </div>
-            <div class="dineroAhorrado disabled">
-                <p>esto es lo que te ahorras con cada producto</p>
-            </div>
-        </div>
-        <button class="botonCalcular disabled">Calcular</button>
-        <div class="resultados disabled">
-            <p>Esto es lo que vas a pagar en total</p>
-            <p class="totalPagar"></p>
-            <p>Esto es el total de lo que te ahorrras con tu compra</p>
-            <p class="totalAhorrado"></p>
-        </div>
-        <button type="reset" class="botonReset disabled">Reset</button>
-    </main>
-    <script src="./descuentos.js"></script>
+<h1>Cómo calcular precios con descuentos</h1>
+<label for="price">Precio original de tu producto:</label>
+<input id="price" type="number" />
+<label for="coupon">Cupón de descuento:</label>
+<input id="coupon" type="text" />
+<button id="calcular">Calcular descuento</button>
+<p id="result"></p>
+<script src="./descuentosCupones.js"></script>
 </body>
 </html>
