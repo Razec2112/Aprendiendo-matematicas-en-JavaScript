@@ -1,3 +1,5 @@
+const PlatiMath = {}
+
 let suma = 0
 
 // function calcularPromedio(lista) {
@@ -7,7 +9,7 @@ let suma = 0
 
 
  //calculando el promedio de un array con un ciclo for
- function calcularPromedioConMetodos (lista){
+ PlatiMath.calcularPromedio = function calcularPromedioConMetodos (lista){
     
     function sumarElementos (valorAcumulado, nuevoValor) {
         return valorAcumulado + nuevoValor;
@@ -26,7 +28,7 @@ let suma = 0
     console.log(promedio)
  }
 //funcion para saber si un unmero es par o impar
- function esPar(lista){
+ PlatiMath.esPar = function esPar(lista){
     // if (lista.length % 2) {//el operador % nos devuelve el modulo de la division, osea el residuo si es par sera 0 y si es impar sera 1
     //     return false;
     // } else {
@@ -36,11 +38,11 @@ let suma = 0
     return !(lista.length % 2) //simplificacion del codigo anterior
  }
 
- function esImpar(lista) {
+ PlatiMath.esImpar = function esImpar(lista) {
     return lista.length % 2
  }
 
- function calcularModa (lista) {
+ PlatiMath.calcularModa = function calcularModa (lista) {
    const listaCount = {};
 
    for (let i = 0; i < lista.length; i++) {
@@ -64,7 +66,7 @@ let suma = 0
    
  }
 
- function calcularMediana (listaCualquiera){
+ PlatiMath.calcularMediana = function calcularMediana (listaCualquiera){
     const lista = ordenarLista(listaCualquiera)
     const listaEsPar = esPar (lista);
 
@@ -84,7 +86,7 @@ let suma = 0
 
  // el metodo sort se usa ejecuntando una funcion y depende del resultado se pasa hacia atras o adelante
 
- function ordenarLista(listaDesordenada) {
+ PlatiMath.ordenarLista = function ordenarLista(listaDesordenada) {
     function ordenarListaSort (valorAcumulado, nuevoValor) {
 
         // if (valorAcumulado > nuevoValor){
@@ -107,7 +109,7 @@ let suma = 0
     return lista;
  }
  
- function ordenarListaBidimencional(listaBidimencional, i) {
+ PlatiMath.ordenarListaBidimencional = function ordenarListaBidimencional(listaBidimencional, i) {
    function ordenarLista (valorAcumulado, nuevoValor) {
        return valorAcumulado[i] - nuevoValor[i]
    }
