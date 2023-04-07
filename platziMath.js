@@ -40,6 +40,30 @@ let suma = 0
     return lista.length % 2
  }
 
+ function calcularModa (lista) {
+   const listaCount = {};
+
+   for (let i = 0; i < lista.length; i++) {
+      const elemento = lista[i];
+
+      if (listaCount[elemento]) {
+         listaCount[elemento] += 1
+      } else {
+         listaCount[elemento] = 1
+      }
+      
+   }
+   
+
+   const listaArray = Object.entries(listaCount);
+   const listaBidimencionalOrdenada = ordenarListaBidimencional (listaArray, 1);
+   const modaArray = (listaBidimencionalOrdenada[listaBidimencionalOrdenada.length -1])
+   const modaReal = modaArray[0]
+   console.log(listaCount)
+   return modaReal
+   
+ }
+
  function calcularMediana (listaCualquiera){
     const lista = ordenarLista(listaCualquiera)
     const listaEsPar = esPar (lista);
@@ -61,7 +85,7 @@ let suma = 0
  // el metodo sort se usa ejecuntando una funcion y depende del resultado se pasa hacia atras o adelante
 
  function ordenarLista(listaDesordenada) {
-    function ordenarLista (valorAcumulado, nuevoValor) {
+    function ordenarListaSort (valorAcumulado, nuevoValor) {
 
         // if (valorAcumulado > nuevoValor){
         //     return 1
@@ -78,7 +102,17 @@ let suma = 0
     }
 
     const lista = listaDesordenada.sort(ordenarListaSort);
-    const listaArrow = listaDesordenada.sort((a,b) => a-b); // version del ordenamiento donde se usa una arrow function como parametro de el metodo sort
+   //  const listaArrow = listaDesordenada.sort((a,b) => a-b); // version del ordenamiento donde se usa una arrow function como parametro de el metodo sort
 
     return lista;
  }
+ 
+ function ordenarListaBidimencional(listaBidimencional, i) {
+   function ordenarLista (valorAcumulado, nuevoValor) {
+       return valorAcumulado[i] - nuevoValor[i]
+   }
+   const lista = listaBidimencional.sort(ordenarLista);
+
+   return lista;
+}
+
