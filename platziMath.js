@@ -9,7 +9,7 @@ let suma = 0
 
 
  //calculando el promedio de un array con un ciclo for
- PlatiMath.calcularPromedio = function calcularPromedioConMetodos (lista){
+ PlatiMath.calcularPromedioConMetodos = function calcularPromedioConMetodos (lista){
     
     function sumarElementos (valorAcumulado, nuevoValor) {
         return valorAcumulado + nuevoValor;
@@ -21,7 +21,6 @@ let suma = 0
     // const sumaLista = lista.reduce((a,b) => a + b) // forma mas comprimida donde la arrow function se usa directamente con el argumento del meto
 
     const sumaLista = lista.reduce(sumarElementos)
-    console.log (sumaLista)
 
     const promedio = sumaLista / lista.length
 
@@ -67,13 +66,13 @@ let suma = 0
  }
 
  PlatiMath.calcularMediana = function calcularMediana (listaCualquiera){
-    const lista = ordenarLista(listaCualquiera)
-    const listaEsPar = esPar (lista);
+    const lista = PlatiMath.ordenarLista(listaCualquiera)
+    const listaEsPar = PlatiMath.esPar (lista);
 
     if (listaEsPar){
         const iniceMitadParMayor = lista.length /2
         const medianaParArray = [lista[iniceMitadParMayor-1], lista[iniceMitadParMayor]]
-        const medianaPar = calcularPromedioConMetodos (medianaParArray)
+        const medianaPar = PlatiMath.calcularPromedioConMetodos (medianaParArray)
         return medianaPar
         
 
