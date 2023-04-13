@@ -23,8 +23,7 @@ let suma = 0
     const sumaLista = lista.reduce(sumarElementos)
 
     const promedio = sumaLista / lista.length
-
-    console.log(promedio)
+    return promedio
  }
 //funcion para saber si un unmero es par o impar
  PlatiMath.esPar = function esPar(lista){
@@ -60,7 +59,6 @@ let suma = 0
    const listaBidimencionalOrdenada = ordenarListaBidimencional (listaArray, 1);
    const modaArray = (listaBidimencionalOrdenada[listaBidimencionalOrdenada.length -1])
    const modaReal = modaArray[0]
-   console.log(listaCount)
    return modaReal
    
  }
